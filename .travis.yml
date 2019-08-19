@@ -1,4 +1,5 @@
 language: ruby
+
 matrix:
   fast_finish: true
   include:
@@ -8,18 +9,22 @@ matrix:
   - rvm: ruby-head
   allow_failures:
   - rvm: ruby-head
+
 sudo: false
+
 cache: bundler
+
 services:
-- postgresql
+  - postgresql
+
 addons:
   postgresql: 9.6
+
 before_install: gem install bundler
+
 before_script:
-- psql -c 'create database sequel_plugins;' -U postgres
-script:
-- bundle exec rspec
-- bundle exec rubocop
+  - psql -c 'create database sequel_plugins;' -U postgres
+
 deploy:
   provider: rubygems
   api_key:
